@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: exports</title>
+    <title>JSDoc: Class: AnimationEntity</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: exports</h1>
+    <h1 class="page-title">Class: AnimationEntity</h1>
 
     
 
@@ -28,7 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>exports<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>AnimationEntity<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">通过参数构造一个模型Entity，使得其能够实时运动，考虑贴地1 构造后调用addTrackPoint实时添加点位2 实时跟踪车辆运行轨迹时场景下可用3 可自行添加设置历史轨迹，播放，暂停等方法4 比setinterval方法更流畅精确，直接使用cesium内部时间戳</div>
         
     
 </header>
@@ -39,18 +41,16 @@
         
 
     
-
-    
-    <h4 class="name" id="exports"><span class="type-signature"></span>new exports<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h2>Constructor</h2>
     
 
     
+    <h4 class="name" id="AnimationEntity"><span class="type-signature"></span>new AnimationEntity<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
 
 
-
-<div class="description">
-    箭头线
-</div>
 
 
 
@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="cesiumcontroller_model_ArrowPolyline.js.html">cesiumcontroller/model/ArrowPolyline.js</a>, <a href="cesiumcontroller_model_ArrowPolyline.js.html#line20">line 20</a>
+        <a href="AnimationEntity.js.html">AnimationEntity.js</a>, <a href="AnimationEntity.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -131,7 +131,12 @@
     
 
     
+        <h3 class="subsection-title">Classes</h3>
 
+        <dl>
+            <dt><a href="AnimationEntity.html">AnimationEntity</a></dt>
+            <dd></dd>
+        </dl>
     
 
     
@@ -143,36 +148,15 @@
     
 
     
+        <h3 class="subsection-title">Methods</h3>
 
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>exports<span class="signature">(id, radius, position, color)</span><span class="type-signature"></span></h2>
         
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
+            
 
     
 
     
-    <h4 class="name" id="exports"><span class="type-signature"></span>new exports<span class="signature">(id, radius, position, color)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addTrackPoint"><span class="type-signature"></span>addTrackPoint<span class="signature">(point, datetime)</span><span class="type-signature"></span></h4>
     
 
     
@@ -180,7 +164,7 @@
 
 
 <div class="description">
-    构造一个旋转轴
+    动态新增轨迹点
 </div>
 
 
@@ -216,13 +200,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>point</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">*</span>
 
 
             
@@ -232,20 +216,20 @@
 
             
 
-            <td class="description last">id</td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>radius</code></td>
+                <td class="name"><code>datetime</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">*</span>
 
 
             
@@ -255,53 +239,7 @@
 
             
 
-            <td class="description last">半径</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>position</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Cesium.Cartesian3</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">位置</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Cesium.Color</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">颜色</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -342,7 +280,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="cesiumcontroller_model_AxisSphere.js.html">cesiumcontroller/model/AxisSphere.js</a>, <a href="cesiumcontroller_model_AxisSphere.js.html#line32">line 32</a>
+        <a href="AnimationEntity.js.html">AnimationEntity.js</a>, <a href="AnimationEntity.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -372,8 +310,36 @@
 
 
 
+        
+            
+
     
-    </div>
+
+    
+    <h4 class="name" id="destory"><span class="type-signature"></span>destory<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    销毁对象
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
 
     
 
@@ -389,6 +355,50 @@
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="AnimationEntity.js.html">AnimationEntity.js</a>, <a href="AnimationEntity.js.html#line106">line 106</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
