@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>AnimationEntity<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>AnimationEntity<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">通过参数构造一个模型Entity，使得其能够实时运动，考虑贴地1 构造后调用addTrackPoint实时添加点位2 实时跟踪车辆运行轨迹时场景下可用3 可自行添加设置历史轨迹，播放，暂停等方法4 比setinterval方法更流畅精确，直接使用cesium内部时间戳</div>
         
@@ -45,19 +45,307 @@
     
 
     
-    <h4 class="name" id="AnimationEntity"><span class="type-signature"></span>new AnimationEntity<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="AnimationEntity"><span class="type-signature"></span>new AnimationEntity<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
 
 
 
+<div class="description">
+    构造函数
+</div>
 
 
 
 
 
 
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">An object with the following properties:
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>initPosition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Cartisian3</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Whether or not to enable clustering.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dateTime</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    20
+                
+                </td>
+            
+
+            <td class="description last">时间差，预留缓存时间差，单位s</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">可选模型的属性信息</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offsetHeading</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    3.14
+                
+                </td>
+            
+
+            <td class="description last">方位角偏移，弧度制,另外其它的偏移参数暂未考虑</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelurl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last">gltf模型地址</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -93,7 +381,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AnimationEntity.js.html">AnimationEntity.js</a>, <a href="AnimationEntity.js.html#line11">line 11</a>
+        <a href="commands_AnimationEntity.js.html">commands/AnimationEntity.js</a>, <a href="commands_AnimationEntity.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -130,13 +418,6 @@
 
     
 
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="AnimationEntity.html">AnimationEntity</a></dt>
-            <dd></dd>
-        </dl>
     
 
     
@@ -280,7 +561,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AnimationEntity.js.html">AnimationEntity.js</a>, <a href="AnimationEntity.js.html#line97">line 97</a>
+        <a href="commands_AnimationEntity.js.html">commands/AnimationEntity.js</a>, <a href="commands_AnimationEntity.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -368,7 +649,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AnimationEntity.js.html">AnimationEntity.js</a>, <a href="AnimationEntity.js.html#line106">line 106</a>
+        <a href="commands_AnimationEntity.js.html">commands/AnimationEntity.js</a>, <a href="commands_AnimationEntity.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -414,13 +695,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AnimationEntity.html">AnimationEntity</a></li><li><a href="CesiumDrawTool.html">CesiumDrawTool</a></li><li><a href="CesiumLabelEditor.html">CesiumLabelEditor</a></li><li><a href="CesiumModelEditor.html">CesiumModelEditor</a></li><li><a href="CesiumPolygonEditor.html">CesiumPolygonEditor</a></li><li><a href="CesiumShutter.html">CesiumShutter</a></li><li><a href="TRAnlaysisTool.html">TRAnlaysisTool</a></li><li><a href="TranslationController.html">TranslationController</a></li><li><a href="XGAnlaysisTool.html">XGAnlaysisTool</a></li><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_calculation">_calculation</a></li><li><a href="global.html#is">is</a></li><li><a href="global.html#rotation">rotation</a></li><li><a href="global.html#rotationAxis">rotationAxis</a></li><li><a href="global.html#select">select</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#translation">translation</a></li><li><a href="global.html#updateAngle">updateAngle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AnimationEntity.html">AnimationEntity</a></li><li><a href="CesiumDrawCircleTool.html">CesiumDrawCircleTool</a></li><li><a href="CesiumDrawRectangleTool.html">CesiumDrawRectangleTool</a></li><li><a href="CesiumDrawTool.html">CesiumDrawTool</a></li><li><a href="CesiumLabelEditor.html">CesiumLabelEditor</a></li><li><a href="CesiumModelEditor.html">CesiumModelEditor</a></li><li><a href="CesiumPolygonEditor.html">CesiumPolygonEditor</a></li><li><a href="CesiumShutter.html">CesiumShutter</a></li><li><a href="ModelSelectedCommand.html">ModelSelectedCommand</a></li><li><a href="PrimitiveCluster.html">PrimitiveCluster</a></li><li><a href="TRAnlaysisTool.html">TRAnlaysisTool</a></li><li><a href="TranslationController.html">TranslationController</a></li><li><a href="XGAnlaysisTool.html">XGAnlaysisTool</a></li><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_calculation">_calculation</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#is">is</a></li><li><a href="global.html#rotation">rotation</a></li><li><a href="global.html#rotationAxis">rotationAxis</a></li><li><a href="global.html#select">select</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#translation">translation</a></li><li><a href="global.html#updateAngle">updateAngle</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu May 25 2023 10:52:04 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 30 2023 14:14:44 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

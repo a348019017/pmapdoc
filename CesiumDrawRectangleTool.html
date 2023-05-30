@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CesiumShutter</title>
+    <title>JSDoc: Class: CesiumDrawRectangleTool</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CesiumShutter</h1>
+    <h1 class="page-title">Class: CesiumDrawRectangleTool</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CesiumShutter<span class="signature">(divOrName, option)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CesiumDrawRectangleTool<span class="signature">(drawcomplete, option)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Cesium卷帘封装类，除UI外封装一些内部功能,仅仅仅只包含左右的卷帘</div>
+            <div class="class-description">绘制矩形的包装类</div>
         
     
 </header>
@@ -45,16 +45,12 @@
     
 
     
-    <h4 class="name" id="CesiumShutter"><span class="type-signature"></span>new CesiumShutter<span class="signature">(divOrName, option)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CesiumDrawRectangleTool"><span class="type-signature"></span>new CesiumDrawRectangleTool<span class="signature">(drawcomplete, option)</span><span class="type-signature"></span></h4>
     
 
     
 
 
-
-<div class="description">
-    构建一个卷帘类，处理上下卷帘和左右卷帘的操作，包含一点UI动作，用于Vue Shutter中使用
-</div>
 
 
 
@@ -89,13 +85,13 @@
 
         <tr>
             
-                <td class="name"><code>divOrName</code></td>
+                <td class="name"><code>drawcomplete</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">function</span>
 
 
             
@@ -105,7 +101,7 @@
 
             
 
-            <td class="description last">卷帘中心分隔线的element id</td>
+            <td class="description last">绘制完成回调函数</td>
         </tr>
 
     
@@ -118,7 +114,7 @@
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">object</span>
 
 
             
@@ -128,7 +124,79 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">参数
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>projection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">返回geojson的参考系,默认"EPSG:4326"</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isclearwhencomplete</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">绘制完成后是否自行移除,默认是贴地绘制的</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -169,7 +237,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="commands_CesiumShutter.js.html">commands/CesiumShutter.js</a>, <a href="commands_CesiumShutter.js.html#line5">line 5</a>
+        <a href="commands_CesiumDrawRectangleTool.js.html">commands/CesiumDrawRectangleTool.js</a>, <a href="commands_CesiumDrawRectangleTool.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -210,7 +278,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="CesiumShutter.html">CesiumShutter</a></dt>
+            <dt><a href="CesiumDrawRectangleTool.html">CesiumDrawRectangleTool</a></dt>
             <dd></dd>
         </dl>
     

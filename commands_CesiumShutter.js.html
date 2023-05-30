@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CesiumPolygonEditor</title>
+    <title>JSDoc: Source: commands/CesiumShutter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,144 +17,83 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CesiumPolygonEditor</h1>
+    <h1 class="page-title">Source: commands/CesiumShutter.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CesiumPolygonEditor<span class="signature">()</span><span class="type-signature"></span></h2>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * Cesium卷帘封装类，除UI外封装一些内部功能,仅仅仅只包含左右的卷帘
+ */
+export class CesiumShutter {
+
+    /**
+     * 构建一个卷帘类，处理上下卷帘和左右卷帘的操作，包含一点UI动作，用于Vue Shutter中使用
+     * @param {*} divOrName  卷帘中心分隔线的element id
+     * @param {*} option 
+     */
+    constructor(divOrName,option){
+        const slider = document.getElementById(divOrName);
+        this._silder=slider;
+    }
+
+    active() {
+        this.deactive();
+        let slider=this._silder;
+        const handler = new Cesium.ScreenSpaceEventHandler(slider);
+        this._handler=handler;
+        let moveActive = false;
+
+        function move(movement) {
+            if (!moveActive) {
+                return;
+            }
+
+            const relativeOffset = movement.endPosition.x;
+            const splitPosition =
+                (slider.offsetLeft + relativeOffset) /
+                slider.parentElement.offsetWidth;
+            slider.style.left = `${100.0 * splitPosition}%`;
+            viewer.scene.splitPosition = splitPosition;
+        }
+
+        handler.setInputAction(function() {
+            moveActive = true;
+        }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+        handler.setInputAction(function() {
+            moveActive = true;
+        }, Cesium.ScreenSpaceEventType.PINCH_START);
+
+        handler.setInputAction(move, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+        handler.setInputAction(move, Cesium.ScreenSpaceEventType.PINCH_MOVE);
+
+        handler.setInputAction(function() {
+            moveActive = false;
+        }, Cesium.ScreenSpaceEventType.LEFT_UP);
+        handler.setInputAction(function() {
+            moveActive = false;
+        }, Cesium.ScreenSpaceEventType.PINCH_END);
+    }
+
+    deactive() {
+        if (this._handler) {
+            this._handler.destroy();
+            this._handler = undefined;
+        }
+    }
+
+    destroy(){
         
-            <div class="class-description">单多边形编辑工具，viewer采用全局变量，可自选传入</div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="CesiumPolygonEditor"><span class="type-signature"></span>new CesiumPolygonEditor<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="commands_CesiumPolygonEditor.js.html">commands/CesiumPolygonEditor.js</a>, <a href="commands_CesiumPolygonEditor.js.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="CesiumPolygonEditor.html">CesiumPolygonEditor</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
