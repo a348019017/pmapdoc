@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: loaders/domLoader.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: loaders/domLoader.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { jsonToCesiumObject } from "../util/util";
+import  "@dvgis/cesium-map"
+
+/**
+ * 预定义的图层枚举
+ * 其它图层可自行定义在配置文件中
+ */
+export let preDefineImagery = {
+    GaoDeDom:{
+      name: "gaodedom",
+      title: "高德影像",
+      url: "https://webst02.is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}",
+      minimumLevel: 3,
+      //这里需要设置原始瓦片所能支持的最高级别
+      maximumLevel: 16,
+      value: false,
+      //type: "ImageryProvider",
+    },
+    GaoDeMap:{
+      name: "gaodemap",
+      title: "高德地图",
+      url: "http://webrd01.is.autonavi.com/appmaptile?x={x}&amp;y={y}&amp;z={z}&amp;lang=zh_cn&amp;size=2&amp;scale=1&amp;style=8",
+      minimumLevel: 3,
+      maximumLevel: 21,
+      value: false,
+      //type: "ImageryProvider",
+    },
+    GaoDeDomX:{
+      name: "gaodemapx",
+      title: "高德影像纠偏",
+      style: "img", // style: img、elec、cva
+      crs: "WGS84", // 使用84坐标系，默认为：GCJ02
+      minimumLevel: 3,
+      maximumLevel: 18,
+      value: false,
+      type: "AmapImageryProvider",
+    },
+    GaoDeMap:{
+      name: "gaodemapimgx",
+      title: "高德地图纠偏",
+      style: "elec", // style: img、elec、cva
+      crs: "WGS84", // 使用84坐标系，默认为：GCJ02
+      minimumLevel: 3,
+      maximumLevel: 18,
+      value: false,
+      type: "AmapImageryProvider",
+    },
+    GoogleDom:{
+      name: "google影像",
+      title: "谷歌影像",
+      url: "https://crack.jyaitech.com/gis/getmap?x={x}&amp;y={y}&amp;z={z}",
+      minimumLevel: 3,
+      maximumLevel: 21,
+      value: true,
+    },
+    MapBoxMap:{
+      url: 'https://api.mapbox.com/styles/v1',
+      name: "mapboxdark",
+      title: "mapboxdark",
+      username: "pongxie",
+      styleId: "cl7e5zmmk000m14pcp3zypbo7",
+      accessToken:
+        "pk.eyJ1IjoicG9uZ3hpZSIsImEiOiJjbDVrdmtndHowZHY3M2pxcjdrZzZsZTVoIn0.3PpdH5rSURGGtrfp90iIOw",
+      minimumLevel: 3,
+      maximumLevel: 21,
+      value: true,
+      type: "MapboxStyleImageryProvider",
+    },
+  };
+
+
+
+/**
+ * 处理影像的加载类，loader主要满足的数据的加载管理，面向图层，统一接口,数据驱动，没有中间包装的对象
+ */
+export class DomLoader
+{
+     //预定义的TMS
+  parseJsonToImageProvider(j) {
+    if (j.type) return jsonToCesiumObject(j);
+    else {
+      let tmplayer = new Cesium.UrlTemplateImageryProvider({
+        url: j.url,
+        maximumLevel: j.maximumLevel ? j.maximumLevel : 21,
+        minimumLevel: j.minimumLevel ? j.minimumLevel : 0,
+        rectangle: j.rectangle
+          ? Cesium.Rectangle.fromDegrees(
+            j.rectangle[0],
+            j.rectangle[1],
+            j.rectangle[2],
+            j.rectangle[3]
+          )
+          : Cesium.Rectangle.MAX_VALUE,
+      });
+      return tmplayer;
+    }
+  }
+
+  /**
+   * 
+   * @param {viewer} viewer 
+   * @param {object} j 传入影像图层配置文件,一律通过配置文件进行加载
+   * @returns Cesium.ImageryLayer
+   */
+  addImagelayer(viewer, j) {
+    let viewerLayers = viewer.scene.imageryLayers;
+    viewerLayers.removeAll();
+    let tmplayer = this.parseJsonToImageProvider(j);
+    var imglayer = viewerLayers.addImageryProvider(tmplayer);
+    return imglayer;
+  }
+
+
+  removeImagelayer(viewer, j) {
+    let viewerLayers = viewer.scene.imageryLayers;
+    if (j.ref) {
+      viewerLayers.remove(j.ref, true);
+      j.ref = undefined;
+    }
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AnimationEntity.html">AnimationEntity</a></li><li><a href="Cesium.Measure.html">Measure</a></li><li><a href="CesiumDrawCircleTool.html">CesiumDrawCircleTool</a></li><li><a href="CesiumDrawRectangleTool.html">CesiumDrawRectangleTool</a></li><li><a href="CesiumDrawTool.html">CesiumDrawTool</a></li><li><a href="CesiumLabelEditor.html">CesiumLabelEditor</a></li><li><a href="CesiumModelEditor.html">CesiumModelEditor</a></li><li><a href="CesiumPolygonEditor.html">CesiumPolygonEditor</a></li><li><a href="CesiumShutter.html">CesiumShutter</a></li><li><a href="DomLoader.html">DomLoader</a></li><li><a href="ModelSelectedCommand.html">ModelSelectedCommand</a></li><li><a href="PrimitiveCluster.html">PrimitiveCluster</a></li><li><a href="TRAnlaysisTool.html">TRAnlaysisTool</a></li><li><a href="WindChart.html">WindChart</a></li><li><a href="XGAnlaysisTool.html">XGAnlaysisTool</a></li><li><a href="flatGeoBufferLoader.html">flatGeoBufferLoader</a></li></ul><h3>Global</h3><ul><li><a href="global.html#preDefineImagery">preDefineImagery</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Jun 07 2023 09:51:44 GMT+0800 (中国标准时间)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
